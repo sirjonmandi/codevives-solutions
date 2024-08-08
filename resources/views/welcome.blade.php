@@ -4,114 +4,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Codevives Solutions</title>
-  <link rel="stylesheet" href="{{asset('./assets/index-9K5_d7ea.css')}}">
+    <title>codehives solutions</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="{{asset('assets/index-9K5_d7ea.css')}}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-
 <body class="bg-white">
-    
-    <header class=" h-14 md:h-16 bg-[#1211119e] fixed z-10 w-full text-white">
-        <div class="container m-auto h-full flex justify-between items-center px-4 md:px-8">
-            <div class="logo">
-                <h1 class="capitalize text-2xl  border-l-4 border-sky-500 pl-3">{{$data->site_name}}</h1>
+    @if (session()->has('success'))
+    <div class="top-16 p-10 fixed z-50 w-full" x-data="{modal:true}">
+        <div x-show="modal" class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-green-100 bg-green-600 bg-opacity-70 rounded-lg shadow-md focus:outline-none focus:shadow-outline-green">
+            <div class="flex items-center">
+                <span class="capitalize">{{session()->get('success')}}</span>
             </div>
-            <div class="md:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35" viewBox="0,0,256,256">
-                    <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                        stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                        font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                        style="mix-blend-mode: normal">
-                        <g transform="scale(5.12,5.12)">
-                            <path d="M2,9v2h46v-2zM2,24v2h46v-2zM2,39v2h46v-2z"></path>
-                        </g>
-                    </g>
-                </svg>
-            </div>
-            <div class="hidden md:block">
-                <ul class="flex gap-6">
-                    <li class="cursor-pointer border-b-2 border-sky-500"><a class="capitalize "
-                            href="#">home</a></li>
-                    <li class="cursor-pointer hover:border-b-2 border-sky-500"><a class="capitalize "
-                            href="#">portfolio</a></li>
-                    <li class="cursor-pointer hover:border-b-2 border-sky-500"><a class="capitalize "
-                            href="#">services</a></li>
-                    <li class="cursor-pointer hover:border-b-2 border-sky-500"><a class="capitalize "
-                            href="#">careers</a></li>
-                </ul>
-            </div>
-            <div class="hidden lg:block">
-                <a href="mailto:{{$data->email}}"><button
-                        class="capitalize py-1 px-3 rounded-full text-xl border-2 hover:bg-sky-500 transition-all duration-75">contact
-                        us</button></a>
-            </div>
+            <button @click="modal = false "><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                role="img" aria-hidden="true">
+                <path
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg></button>
         </div>
+    </div>
+    @elseif (session()->has('fail'))
+    <div class="top-16 p-10 fixed z-50 w-full" x-data="{modal:true}">
+        <div x-show="modal" class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-green-100 bg-green-600 bg-opacity-70 rounded-lg shadow-md focus:outline-none focus:shadow-outline-green">
+            <div class="flex items-center">
+                <span class="capitalize">{{session()->get('fail')}}</span>
+            </div>
+            <button @click="modal = false "><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                role="img" aria-hidden="true">
+                <path
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg></button>
+        </div>
+    </div>
+    @endif
+    <header  class="fixed w-full z-10 p-5 bg-[#1211119e] shadow">
+        <nav class="container m-auto md:flex md:justify-between md:items-center text-white">
+            <div class="flex justify-between items-center">
+                <a class="capitalize text-2xl font-semibold border-l-4 border-sky-500 pl-3 hover:text-sky-400" href="#">{{$data->site_name}}</a>
+                <span class="text-3xl cursor-pointer md:hidden block" >
+                    <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+                </span>
+            </div>
+            <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-[#1211119e] md:bg-transparent  w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
+                <li class="mx-4 my-6 md:my-0"><a class="text-xl text-sky-400 hover:text-sky-400 duration-500" href="#home">Home</a></li>
+                <li class="mx-4 my-6 md:my-0"><a class="text-xl hover:text-sky-400 duration-500" href="#about-us">About Us</a></li>
+                <li class="mx-4 my-6 md:my-0"><a class="text-xl hover:text-sky-400 duration-500" href="#services">Services</a></li>
+                <li class="mx-4 my-6 md:my-0"><a class="text-xl hover:text-sky-400 duration-500" href="#contact-us">Contact Us</a></li>
+                <a href="#name"><button class="bg-sky-400 text-white font-sans duration-500 px-6 py-2 mx-4 hover:bg-sky-500 rounded">Book Now</button>
+                </a>
+            </ul>
+        </nav>
     </header>
-    <section class="h-full ">
+
+
+    <section id="home" class="h-full">
         <div class="h-full w-full absolute  bg-[#1211119e]">
-            <div class="h-full w-full flex justify-center  text-white">
+            <div class="h-full w-full flex justify-center items-center  text-white">
                 <div class="container m-auto">
-                    <h1 class="text-3xl capitalize text-center">welcome to <span class="text-sky-500">{{$data->site_name}}</span>.</h1>
-                    <h1 class="text-3xl capitalize text-center">{{$data->hero_text}}</h1>
+                    <h1 class="text-4xl capitalize text-center">welcome to <span class="text-sky-500">{{$data->site_name}}</span>.</h1>
+                    <h1 class="text-4xl capitalize text-center">{{$data->hero_text}}</h1>
                     <br />
                     <p class="hidden md:block text-center m-auto text-lg w-3/4">{{$data->subhero_text}}</p>
-                    <br>
+                    {{-- <br>
                     <div class="text-center">
                         <a href="#"><button
                                 class="capitalize py-2 px-5 rounded-full text-xl border-2 hover:bg-sky-500 transition-all duration-75">book now</button></a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
-        <div class="w-full h-full relative -z-10  bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url({{asset("storage/$data->hero_img")}});"></div>
+        <div class="w-full h-full relative -z-10  bg-cover bg-center bg-no-repeat bg-fixed overflow-hidden" style="background-image: url('{{asset("storage/$data->hero_img")}}')">
+        </div>
     </section>
-    <section class="h-auto md:h-full pb-8 md:pb-0 md:overflow-hidden">
+    <section id="about-us" class="h-auto md:h-full pb-8 md:overflow-hidden">
         <h1 class="uppercase text-3xl font-semibold text-center text-sky-500 pt-8">-{{$data->portfolio_title}}-</h1>
-        <p class="text-center">{{$data->portfolio_subtext}}</p>
+        <p class="text-center text-[#575a7b]">{{$data->portfolio_subtext}}</p>
         <div class="flex flex-col md:flex-row gap-8 justify-center items-center mt-8">
             <div class="flex flex-col items-center">
-                <div class="h-32 w-32 bg-white hover:bg-sky-500 rounded-full  flex justify-center items-center ">
-                    <img class="w-16" src="{{asset('./assets/megaphone-oIQ9T5oS.png')}}" alt="">
+                <div class="h-32 w-32  hover:bg-sky-500 rounded-full  flex justify-center items-center ">
+                    <img class="w-16" src="{{asset('assets/megaphone-oIQ9T5oS.png')}}" alt="">
                 </div>
-                <h3 class="capitalize">conseltancy</h3>
+                <h3 class="capitalize font-semibold">conseltancy</h3>
             </div>
             <div class="flex flex-col items-center">
-                <div class="h-32 w-32 bg-white hover:bg-sky-500 rounded-full flex justify-center items-center">
-                    <img class="w-16" src="{{asset('./assets/web-development-E-W1el60.png')}}" alt="">
+                <div class="h-32 w-32  hover:bg-sky-500 rounded-full flex justify-center items-center">
+                    <img class="w-16" src="{{asset('assets/web-development-E-W1el60.png')}}" alt="">
                 </div>
-                <h3 class="capitalize">Web Development</h3>
+                <h3 class="capitalize font-semibold">Web Development</h3>
             </div>
             <div class="flex flex-col items-center">
-                <div class="h-32 w-32 bg-white hover:bg-sky-500 rounded-full flex justify-center items-center">
-                    <img class="w-16" src="{{asset('./assets/mobile-development-iyoxf-4X.png')}}" alt="">
+                <div class="h-32 w-32  hover:bg-sky-500 rounded-full flex justify-center items-center">
+                    <img class="w-16" src="{{asset('assets/mobile-development-iyoxf-4X.png')}}" alt="">
                 </div>
-                <h3 class="capitalize">App Development</h3>
+                <h3 class="capitalize font-semibold">App Development</h3>
             </div>
             <div class="flex flex-col items-center">
-                <div class="h-32 w-32 bg-white hover:bg-sky-500 rounded-full flex justify-center items-center">
-                   <img class="w-16" src="{{asset('./assets/startup-B_Dra6O1.png')}}" alt="">
+                <div class="h-32 w-32  hover:bg-sky-500 rounded-full flex justify-center items-center">
+                   <img class="w-16" src="{{asset('assets/startup-B_Dra6O1.png')}}" alt="">
                 </div>
-                <h3 class="capitalize">Deployment</h3>
+                <h3 class="capitalize font-semibold">Deployment</h3>
             </div>
             <div class="flex flex-col items-center">
-                <div class="h-32 w-32 bg-white hover:bg-sky-500 rounded-full flex justify-center items-center">
-                    <img class="w-16" src="{{asset('./assets/web-maintenance-pArzRB21.png')}}" alt="">
+                <div class="h-32 w-32  hover:bg-sky-500 rounded-full flex justify-center items-center">
+                    <img class="w-16" src="{{asset('assets/web-maintenance-pArzRB21.png')}}" alt="">
                 </div>
-                <h3 class="capitalize">maintainence</h3>
+                <h3 class="capitalize font-semibold">maintainence</h3>
             </div>
         </div>
-        <div class=" xl:mt-16 flex flex-col md:flex-row gap-16 justify-center items-center">
-            <div class="images flex justify-center items-center md:block">
-                <img class="w-full md:w-96" src="{{asset("./assets/hero2-jB7HlNxC.jpg")}}" alt="">
+        <div class="md:pt-10 xl:mt-16 flex flex-col md:flex-row gap-16 justify-center">
+            <div class="h-[484px] w-96 flex justify-center items-center md:block  bg-cover bg-center" style="background-image: url('{{asset("storage/$data->portfolio_img")}}');">
             </div>
-            <div class=" text p-4 md:w-1/2 lg:w-1/3 ">
+            <div class="text p-4 md:w-1/2 lg:w-1/3">
                 <h1 class="uppercase text-3xl font-semibold  text-sky-500 pt-8">-who we are ?-</h1>
                 <br />
-                <p class="text-start line-clamp-6">{{$data->who_we_are}}</p>
-                <a class="text-sky-500" href="#">read more</a>
+                <p class="text-start line-clamp-6 text-[#575a7b]">{{$data->who_we_are}}</p>
+
             </div>
         </div>
     </section>
+
+    <section id="services" class="h-auto p-4">
+        <div class="container m-auto">
+            <div class="">
+                <h1 class="uppercase text-3xl font-semibold text-center text-sky-500 pt-8">-{{$data->service_title}}-</h1>
+                <p class="text-center text-[#575a7b]">{{$data->service_subtext}}</p>
+            </div>
+            <div class="w-full mt-8 h-auto grid gap-4 md:justify-center  md:grid-cols-2 lg:grid-cols-3">
+                @foreach ($services as $service)
+                <div class="card  w-full min-h-64 h-full py-[2em] px-[1.5em] bg-card bg-card-size bg-card-position rounded shadow-card cursor-pointer duration-300 hover:bg-card-hover text-center hover:text-white">
+                    <div class="icon  bg-cover bg-center relative m-auto text-[30px] h-[2.5em] w-[2.5em] rounded-full grid place-items-center duration-300 " style="background-image: url('{{asset("storage/$service->cover_img")}}');">
+                    </div>
+                    <h3 class="text-xl font-semibold capitalize">{{$service->name}}</h3>
+                    <p class="text-sm">
+                      {{$service->desc}}
+                    </p>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     <section class="mt-8 lg:mt-4 h-3/4 w-full md:h-1/4">
         <div class="h-3/4 md:h-1/4 w-full absolute  bg-[#1211119e]">
             <div class="text-white h-full w-full md:flex md:justify-evenly md:items-center">
@@ -129,76 +164,61 @@
                 </div>
             </div>
         </div>
-        <div class="w-full h-full relative -z-10 bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url({{asset("storage/$data->hero_img")}});">
+        <div class="w-full h-full relative -z-10 bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('{{asset("storage/$data->hero_img")}}')">
         </div>
     </section>
-    <section class="h-auto p-4">
-        <div class="container m-auto">
-            <div class="">
-                <h1 class="uppercase text-3xl font-semibold text-center text-sky-500 pt-8">-{{$data->service_title}}-</h1>
-                <p class="text-center">{{$data->service_subtext}}</p>
-            </div>
-            <div class="w-full mt-8 h-auto  grid gap-4 justify-center  md:grid-cols-2 lg:grid-cols-3 text-white">
-                <div class="h-56 w-80 md:w-full bg-gray-200 flex justify-center items-center flex-col shadow-lg bg-center" style="background-image: url({{asset('./assets/w-1-jlsjY5oj.png')}});">
-                    <h1 class="capitalize text-3xl">landing page </h1>
-                    <h2 class="capitalize text-2xl">start at $299</h2>
-                </div>
-                <div class="h-56 w-80 md:w-full bg-gray-200 flex justify-center items-center flex-col shadow-lg bg-center" style="background-image: url({{asset('./assets/w-1-jlsjY5oj.png')}});">
-                    <h1 class="capitalize text-3xl">landing page </h1>
-                    <h2 class="capitalize text-2xl">start at $299</h2>
-                </div>
-                <div class="h-56 w-80 md:w-full bg-gray-200 flex justify-center items-center flex-col shadow-lg bg-center" style="background-image: url({{asset('./assets/w-1-jlsjY5oj.png')}});">
-                    <h1 class="capitalize text-3xl">landing page </h1>
-                    <h2 class="capitalize text-2xl">start at $299</h2>
-                </div>
 
-            </div>
-        </div>
-    </section>
-    {{-- <section class="h-auto w-full">
+    <section id="contact-us" class="h-auto w-full">
         <div class="container h-auto lg:h-full w-full m-auto">
             <div class="">
                 <h1 class="uppercase text-3xl font-semibold text-center text-sky-500 pt-8">-{{$data->careers_title}}-</h1>
-                <p class="text-center">{{$data->careers_subtext}}</p>
+                <p class="text-center text-[#575a7b]">{{$data->careers_subtext}}</p>
             </div>
-            <div class="h-full w-full md:flex md:justify-center md:items-center p-4">
-                <div class="hidden h-full w-full lg:flex justify-center items-center">
-                    <img class="w-full" src="{{asset('./assets/w-1-jlsjY5oj.png')}}" alt="">
+            <div class="h-full w-full md:flex md:justify-evenly md:items-center p-4">
+                <div class="hidden  w-[70em] h-96 md:flex justify-center items-center  bg-cover bg-center" style="background-image: url('{{asset("storage/$data->career_img")}}');">
                 </div>
                 <div class="h-auto w-full flex justify-evenly items-center">
-                    <form action="" class="mt-4 flex flex-col" method="post">
-
+                    <form action="{{route('addAppointment')}}" class="mt-4 w-full md:w-auto flex flex-col" method="post">
+                        @csrf
                             <label for="name" class="capitalize text-xl mt-2">full name</label>
-                            <input class="w-full md:w-96 h-10 p-4 capitalize bg-gray-200" type="text"  id="name" name="name" placeholder="enter your name">
+                            <input class="w-full md:w-96 h-10 p-4 capitalize border-none  bg-gray-200" type="text"  id="name" name="name" placeholder="enter your name">
+                            <x-input-error :messages="$errors->get('name')"/>
 
                             <label for="email" class="capitalize text-xl mt-2">Email</label>
-                            <input class="w-full md:w-96 h-10 p-4 capitalize bg-gray-200" type="text"  id="email" name="email" placeholder="example@example.com">
+                            <input class="w-full md:w-96 h-10 p-4 capitalize border-none bg-gray-200" type="text"  id="email" name="email" placeholder="example@example.com">
+                            <x-input-error :messages="$errors->get('email')"/>
 
                             <label for="contact" class="capitalize text-xl mt-2">contact no</label>
-                            <input class="w-full md:w-96 h-10 p-4 capitalize bg-gray-200" type="tel"  id="contact" name="contact" placeholder="9874561230">
+                            <input class="w-full md:w-96 h-10 p-4 capitalize border-none bg-gray-200" type="tel"  id="contact" name="contact" placeholder="9874561230">
+                            <x-input-error :messages="$errors->get('contact')"/>
 
-                            <label for="resume" class="capitalize text-xl mt-2">resume</label>
-                            <input class="w-full md:w-96 h-10 capitalize bg-gray-200" type="file" accept=".pdf" id="resume" name="resume">
-
-                            <label for="role" class="capitalize text-xl mt-2 ">job role</label>
-                            <select class="capitalize w-full md:w-96 h-10 bg-gray-200" name="role" id="role">
-                                <option value="">select role</option>
-                                <option value="frontend">frontend developer</option>
-                                <option value="backend">backend developer</option>
-                                <option value="fullstack">fullstack developer</option>
+                            <label for="service" class="capitalize text-xl mt-2">select service</label>
+                            <select name="service_name" class="w-full md:w-96 h-10  capitalize border-none bg-gray-200"  id="service">
+                                <option value="" selected>select option</option>
+                                @foreach ($services as $service)
+                                <option value="{{$service->name}}">{{$service->name}}</option>
+                                @endforeach
                                 <option value="other">other</option>
                             </select>
-                            <button class="mt-4 p-2 px-8 capitalize  bg-sky-400">submit</button>
+                            <x-input-error :messages="$errors->get('service_name')"/>
+
+
+                            <label for="desc" class="capitalize text-xl mt-2 ">Decription</label>
+                            <textarea class="w-full md:w-96 h-28 p-4 capitalize border-none bg-gray-200" name="desc" id="desc" minlength="50" spellcheck="true"></textarea>
+                            <x-input-error :messages="$errors->get('desc')"/>
+
+                            <button class="mt-4 p-2 px-8 capitalize rounded duration-500 font-semibold text-white bg-sky-400 hover:bg-sky-500">submit</button>
+
                     </form>
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
 
-    <section class="mt-4 h-auto bg-gray-900 overflow-hidden">
+    <section class="mt-4 h-auto bg-slate-900 overflow-hidden">
         <div class="container m-auto h-full flex flex-col gap-8  sm:gap-4 xl:gap-8 p-4">
             <div class="logo text-white">
-                <h1 class="capitalize text-2xl  border-l-4 border-sky-500 pl-3">{{$data->site_name}}</h1>
+                <h1 class="capitalize text-2xl xl:text-3xl border-l-4 border-sky-500 pl-3">{{$data->site_name}}</h1>
             </div>
             <div class=" h-full flex flex-col md:flex-row gap-8 items-baseline justify-between px-4">
                 <div class="text-white lg:w-1/4">
@@ -213,19 +233,50 @@
                         illo beatae accusamus molestiae deserunt sunt qui, dolorem ipsa numquam ratione ab ex. Provident
                         repellendus magni molestias.</p>
                 </div>
-                <div class=" flex flex-col gap-2  lg:w-1/4">
-                    <form action="{{route('newsubs')}}" method="post" class="flex flex-col gap-2  ">
+
+                <form action="{{route('newsubs')}}" method="post" class=" flex flex-col gap-2  lg:w-1/4">
                         @csrf
-                        <label for="subscriber" class="text-white capitalize">get leatest informations</label>
-                        <input type="text" name="subscriber" id="subscriber" class="h-8 p-3 " placeholder="example@example.com">
-                        <button class="p-2 w-1/2 capitalize  bg-sky-400">subscribe</button>
-                    </form>
-                </div>
+                    <label for="subscriber" class="text-white capitalize">get leatest informations</label>
+                    <input type="text" id="subscriber" name="subscriber" class="h-8 p-3 " placeholder="example@example.com">
+                    <button class="p-2 w-1/2 capitalize  rounded duration-500 font-semibold text-white bg-sky-400 hover:bg-sky-500">subscribe</button>
+                </form>
+
             </div>
             <div class="flex justify-center border-t-2 p-4 container m-auto">
-                <p class="text-sm text-white text-center">© All copywrites are reserved by sirjoon mandi</p>
+                <p class="text-sm text-white text-center">© All copywrites are reserved by {{$data->site_name}}.</p>
             </div>
         </div>
     </section>
+
+
+    <script>
+        function Menu(e) {
+            let list = document.querySelector('ul');
+
+            e.name ==="menu" ? (e.name = "close" , list.classList.add('top-[80px]') , list.classList.add('opacity-100')) : (e.name = "menu",list.classList.remove('top-[80px]') , list.classList.remove('opacity-0'))
+        }
+
+        let sections = document.querySelectorAll('section');
+        let navLinks = document.querySelectorAll('header nav ul li a');
+
+        window.onscroll = () => {
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+
+                if(top >= offset && top < offset + height) {
+                    navLinks.forEach(links => {
+                        links.classList.remove('text-sky-400');
+                        document.querySelector('header nav a[href*=' + id + ']').classList.add('text-sky-400');
+                    });
+                };
+            });
+        };
+
+
+    </script>
 </body>
 </html>
+

@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('price');
-            $table->string('desc');
-            $table->string('cover_img');
-            $table->timestamps();
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->enum('status',['1','2','3'])->comment("1->pending , 2->complete , 3->reject")->default('1')->after('desc');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->dropColumn('status');
+        });
     }
 };

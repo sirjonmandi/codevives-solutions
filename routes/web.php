@@ -2,14 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SiteController::class, 'home'])->name('home');
 
 // Route::get('/dashboard',[SiteController::class, 'updateHero'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard',[SiteController::class, 'gotodashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -23,14 +22,23 @@ Route::middleware('auth')->group(function () {
     route::post('/dashboard/updatecareer', [SiteController::class,'updateCareer'])->name('updateCareer');
     route::post('/dashboard/updatefooter', [SiteController::class,'updateFooter'])->name('updateFooter');
 
-    route::get('/dashboard/service',function (){return view('service');})->name('service');
+    route::get('/dashboard/service',[SiteController::class,'gotoService'])->name('service');
     route::post('/dashboard/addservice',[SiteController::class, 'addService'])->name('addService');
 
     route::get('/dashboard/subcsribers', [SiteController::class, 'subscribers'])->name("gotoSubs");
 
-    route::get('/dashboard/careers',[SiteController::class, 'gotoCareers'])->name('gotoCareers');
+    Route::post('updateService/{id}',[SiteController::class,'service'])->name("changeservice");
+
+    Route::get('deletesubscriber/{id}',[SiteController::class,'deletesubs'])->name("deletesubs");
+    Route::get('deleteservices/{id}',[SiteController::class,'deleteservice'])->name("deleteservice");
+
+    Route::get('/markascompleted/{id}',[SiteController::class,'markAsCompleted'])->name('markAsCompleted');
+    Route::get('/markasrejected/{id}',[SiteController::class,'markAsRejected'])->name('markAsRejected');
+
+
 });
 
 require __DIR__.'/auth.php';
 
 route::post('/newsubscriber',[SiteController::class,'newsubs'])->name("newsubs");
+route::Post('requiest/appointment',[AppointmentController::class,'addAppointment'])->name('addAppointment');

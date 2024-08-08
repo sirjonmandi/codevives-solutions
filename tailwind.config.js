@@ -14,6 +14,19 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            backgroundImage:{
+                'card':"linear-gradient(#ffffff 50%, #2c7bfe 50%)"
+              },
+              backgroundPosition:{
+                'card-position':'0 2.5%',
+                'card-hover':"0 100%"
+              },
+              backgroundSize:{
+                'card-size':"100% 200%"
+              },
+              boxShadow:{
+                'card':"0 0 35px rgba(0, 0, 0, 0.12)"
+              }
         },
     },
 

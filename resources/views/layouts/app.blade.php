@@ -12,7 +12,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        {{-- <link rel="stylesheet" href="{{asset('./assets/css/tailwind.output.css')}}" /> --}}
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer ></script>
         <script src="{{asset('./assets/js/init-alpine.js')}}"></script>
     </head>
@@ -24,23 +23,10 @@
                 <!-- Page Content -->
                 <main class="h-full pb-16 overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
-                        {{-- <h2
-                          class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-                        >
-                          Blank
-                        </h2> --}}
                         {{ $slot }}
                     </div>
                 </main>
             </div>
-            <!-- Page Heading -->
-            {{-- @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif --}}
         </div>
     </body>
 </html>
