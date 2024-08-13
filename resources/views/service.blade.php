@@ -116,7 +116,7 @@
                 <div class="p-6 text-gray-800">
                     <div class=" flex justify-between items-center mb-4">
                         <h2 class="text-2xl font-semibold text-gray-700">
-                            {{ __("Services Offer") }}
+                            {{ __("Products Available") }}
                         </h2>
                         <x-dashboard-model title="add servece" modal_id="service" class=" text-sm bg-sky-600 hover:bg-sky-700 active:bg-sky-600">
                             <form action="{{route('addService')}}" method="post" enctype="multipart/form-data">

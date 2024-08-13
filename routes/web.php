@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
     route::post('/dashboard/updatehero', [SiteController::class,'updateHero'])->name('updateHero');
     route::post('/dashboard/updateportfolio', [SiteController::class,'updatePortfolio'])->name('updatePortfolio');
     route::post('/dashboard/updateservice', [SiteController::class,'updateService'])->name('updateServices');
+    route::post('/dashboard/updateproducts', [SiteController::class,'updateProducts'])->name('updateProducts');
     route::post('/dashboard/updatecareer', [SiteController::class,'updateCareer'])->name('updateCareer');
     route::post('/dashboard/updatefooter', [SiteController::class,'updateFooter'])->name('updateFooter');
 

@@ -139,6 +139,31 @@
                     </div>
                 </div>
             </x-dashboard-model>
+            {{-- Products section  --}}
+            <x-dashboard-model title="products" modal_id="products" class="bg-teal-600 active:bg-teal-600 hover:bg-teal-700 h-32">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class=" text-gray-800 ">
+                        <form action="{{route('updateProducts')}}" method="post">
+                            @csrf
+                            <div class="">
+                                <label for="title" class="capitalize ">title :</label>
+                                <input type="text" id="title" name="product_title" placeholder="site name" class="bg-white rounded-lg w-full" value="{{isset($info)?$info->product_title : old('product_title')}}">
+                                <x-input-error :messages="$errors->get('product_title')" class="mt-2" />
+                            </div>
+                            <div class="">
+                                <label for="subtext" class="capitalize">sub text :</label>
+                                <input type="text" id="subtext" name="product_subtext" placeholder="site name" class="bg-white rounded-lg w-full" value="{{isset($info)?$info->product_subtext : old('product_subtext')}}">
+                                <x-input-error :messages="$errors->get('product_subtext')" class="mt-2" />
+                            </div>
+                            <div class="mt-4">
+                                <x-secondary-button type="submit">
+                                    {{__("update products")}}
+                                </x-secondary-button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </x-dashboard-model>
             {{-- contact us  section  --}}
             <x-dashboard-model title="contact us" modal_id="contact" class="bg-green-600 active:bg-green-600 hover:bg-green-700 h-32">
                 <div class="bg-white  overflow-hidden shadow-sm sm:rounded-lg">

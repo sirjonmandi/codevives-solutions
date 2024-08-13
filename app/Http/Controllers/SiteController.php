@@ -115,6 +115,19 @@ class SiteController extends Controller
         }
         return redirect(route('editpages'))->with(['success'=>"service updated successfully !!"]);
     }
+    public function updateProducts(Request $request){
+        $request->validate([
+            'product_title'=>'required|regex:/^[\pL\s\-]+$/u',
+            'product_subtext'=>'required|string',
+        ]);
+        $data = $this->isSetSite();
+        if ($data) {
+            $data->product_title = $request['product_title'];
+            $data->product_subtext = $request['product_subtext'];
+            $data->save();
+        }
+        return redirect(route('editpages'))->with(['success'=>"product updated successfully !!"]);
+    }
     public function service($id, Request $request)
     {
         $data = Services::find($id);
