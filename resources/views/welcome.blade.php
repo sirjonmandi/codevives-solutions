@@ -145,18 +145,20 @@
                 </div>
             </div>
             <div class="w-full pt-8 mt-8 h-auto grid justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-3">
+                @foreach ($plans as $plan)
                 <div
                     class="card group w-full max-w-96 min-h-64 h-full py-[2em] px-[1.5em] bg-card bg-card-size bg-card-position rounded shadow-card cursor-pointer duration-300 hover:bg-card-hover text-center hover:text-white">
-                    <p class="text-xl text-center font-bold text-blue-600 duration-500">Basic</p>
+                    <p class="text-xl text-center font-bold text-blue-600 duration-500 capitalize">{{$plan->name}}</p>
                     <p class="text-center py-8">
                         <span class="text-4xl font-bold text-gray-700 group-hover:text-white duration-500">
-                            $<span>19</span>
+                            $<span>{{$plan->price}}</span>
                         </span>
                         <span class="text-xs font-bold text-gray-500 group-hover:text-white duration-500 line-through">
-                            $<span>49</span>
+                            $<span>{{$plan->show_price}}</span>
                         </span>
                     </p>
                     <ul class="border-t border-gray-300 py-8 space-y-6">
+                        @if ($plan->serv1!=null)
                         <li class="flex items-center space-x-2 px-8">
                             <span class="bg-blue-600 rounded-full p-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
@@ -166,9 +168,10 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">Free Setup
-                                Guidance</span>
+                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">{{$plan->serv1}}</span>
                         </li>
+                        @endif
+                        @if ($plan->serv2!=null)
                         <li class="flex items-center space-x-2 px-8">
                             <span class="bg-blue-600 rounded-full p-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
@@ -178,9 +181,10 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">Email
-                                Support</span>
+                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">{{$plan->serv2}}</span>
                         </li>
+                        @endif
+                        @if ($plan->serv3!=null)
                         <li class="flex items-center space-x-2 px-8">
                             <span class="bg-blue-600 rounded-full p-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
@@ -190,9 +194,10 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">User
-                                Management</span>
+                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">{{$plan->serv3}}</span>
                         </li>
+                        @endif
+                        @if ($plan->serv4!=null)
                         <li class="flex items-center space-x-2 px-8">
                             <span class="bg-blue-600 rounded-full p-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
@@ -202,10 +207,12 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">Reports</span>
+                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">{{$plan->serv4}}</span>
                         </li>
+                        @endif
+                        @if ($plan->serv5!=null)
                         <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
+                            <span class="bg-blue-600 rounded-full p-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
                                     viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd"
@@ -213,10 +220,12 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">Unlimited Users</span>
+                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">{{$plan->serv5}}</span>
                         </li>
+                        @endif
+                        @if ($plan->serv6!=null)
                         <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
+                            <span class="bg-blue-600 rounded-full p-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
                                     viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd"
@@ -224,10 +233,12 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">Data Export</span>
+                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">{{$plan->serv6}}</span>
                         </li>
+                        @endif
+                        @if ($plan->serv7!=null)
                         <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
+                            <span class="bg-blue-600 rounded-full p-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
                                     viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd"
@@ -235,10 +246,12 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">Automated Workflows</span>
+                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">{{$plan->serv7}}</span>
                         </li>
+                        @endif
+                        @if ($plan->serv8!=null)
                         <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
+                            <span class="bg-blue-600 rounded-full p-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
                                     viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd"
@@ -246,8 +259,10 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">API Access</span>
+                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">{{$plan->serv8}}</span>
                         </li>
+                        @endif
+
                     </ul>
                     <div class="flex items-center justify-center mt-6">
                         <a href="#"
@@ -255,226 +270,7 @@
                             title="Purchase">Purchase</a>
                     </div>
                 </div>
-                <div
-                    class="card group w-full max-w-96 min-h-64 h-full py-[2em] px-[1.5em] bg-card bg-card-size bg-card-position rounded shadow-card cursor-pointer duration-300 hover:bg-card-hover text-center hover:text-white">
-                    <p class="text-xl text-center font-bold text-blue-600 duration-500">Proffesnal</p>
-                    <p class="text-center py-8">
-                        <span class="text-4xl font-bold text-gray-700 group-hover:text-white duration-500">
-                            $<span>19</span>
-                        </span>
-                        <span class="text-xs font-bold text-gray-500 group-hover:text-white duration-500 line-through">
-                            $<span>49</span>
-                        </span>
-                    </p>
-                    <ul class="border-t border-gray-300 py-8 space-y-6">
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-blue-600 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">Free Setup
-                                Guidance</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-blue-600 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">Email
-                                Support</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-blue-600 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">User
-                                Management</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-blue-600 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">Reports</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">Unlimited Users</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">Data Export</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">Automated Workflows</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">API Access</span>
-                        </li>
-                    </ul>
-                    <div class="flex items-center justify-center mt-6">
-                        <a href="#"
-                            class="bg-blue-600 border hover:bg-blue-700 px-8 py-2 text-sm text-gray-200 uppercase rounded font-bold transition duration-150"
-                            title="Purchase">Purchase</a>
-                    </div>
-                </div>
-                <div
-                    class="card group w-full max-w-96 min-h-64 h-full py-[2em] px-[1.5em] bg-card bg-card-size bg-card-position rounded shadow-card cursor-pointer duration-300 hover:bg-card-hover text-center hover:text-white">
-                    <p class="text-xl text-center font-bold text-blue-600 duration-500">Bussness</p>
-                    <p class="text-center py-8">
-                        <span class="text-4xl font-bold text-gray-700 group-hover:text-white duration-500">
-                            $<span>19</span>
-                        </span>
-                        <span class="text-xs font-bold text-gray-500 group-hover:text-white duration-500 line-through">
-                            $<span>49</span>
-                        </span>
-                    </p>
-                    <ul class="border-t border-gray-300 py-8 space-y-6">
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-blue-600 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">Free Setup
-                                Guidance</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-blue-600 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">Email
-                                Support</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-blue-600 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">User
-                                Management</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-blue-600 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-600 capitalize group-hover:text-white duration-500">Reports</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">Unlimited Users</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">Data Export</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">Automated Workflows</span>
-                        </li>
-                        <li class="flex items-center space-x-2 px-8">
-                            <span class="bg-gray-300 rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="text-gray-400 capitalize group-hover:text-white duration-500">API Access</span>
-                        </li>
-                    </ul>
-                    <div class="flex items-center justify-center mt-6">
-                        <a href="#"
-                            class="bg-blue-600 border hover:bg-blue-700 px-8 py-2 text-sm text-gray-200 uppercase rounded font-bold transition duration-150"
-                            title="Purchase">Purchase</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
             {{-- @foreach ($services as $service)
                 <div class="card  w-full min-h-64 h-full py-[2em] px-[1.5em] bg-card bg-card-size bg-card-position rounded shadow-card cursor-pointer duration-300 hover:bg-card-hover text-center hover:text-white">

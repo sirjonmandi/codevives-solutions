@@ -36,7 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/markascompleted/{id}',[SiteController::class,'markAsCompleted'])->name('markAsCompleted');
     Route::get('/markasrejected/{id}',[SiteController::class,'markAsRejected'])->name('markAsRejected');
 
-
+    Route::get('/goto/plans',[SiteController::class,'gotoplans'])->name('gotoplans');
+    Route::post('update/basicplan',[SiteController::class,'updatebasic'])->name('updatebasic');
+    Route::post('update/proplan',[SiteController::class,'updatepro'])->name('updatepro');
+    Route::post('update/businessplan',[SiteController::class,'updatebusiness'])->name('updatebusiness');
 });
 
 require __DIR__.'/auth.php';

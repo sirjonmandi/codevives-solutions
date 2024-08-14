@@ -6,6 +6,8 @@ use App\Http\Controllers\redirect;
 use Illuminate\Http\Request;
 use App\Models\SiteInfo;
 use App\Models\Services;
+use App\Models\Plans;
+use App\Models\PlansChart;
 use App\Models\Subscribers as subs;
 use App\Models\Appointment;
 
@@ -15,9 +17,14 @@ class SiteController extends Controller
     public function home(){
         $data = $this->getSiteInfo();
         $services = $this->getServices();
+        $plans = $this->getPlans();
         if($data){
-            return view('welcome')->with(compact('data','services'));
+            return view('welcome')->with(compact('data','services','plans'));
         }
+    }
+    //get plans info
+    public function getPlans(){
+        return Plans::all();
     }
     // check the table is created or not
     public function isSetSite(){
@@ -305,5 +312,96 @@ class SiteController extends Controller
             return redirect(route('service'))->with(["success"=>"Appointment marked as  rejected "]);
         }
         return redirect(route('service'))->with(["fail"=>"failed to perform operation "]);
+    }
+
+    public function getPlan($type){
+        $plan = Plans::where('type','=',"$type")->first();
+        if($plan){
+            return $plan;
+        }
+        else{
+            return new Plans;
+        }
+    }
+    public function updatebasic(Request $request){
+        $request->validate([
+            "title"=>'required|string',
+            "show_price"=>'required|numeric',
+            "price"=>'required|numeric',
+            'service'=>'array'
+        ]);
+        $services  = $request['service'];
+        $plans = $this->getPlan(1);
+        $plans->name = $request['title'];
+        $plans->show_price = $request['show_price'];
+        $plans->price = $request['price'];
+        $plans->type = 1;
+        $plans->serv1 = $services[0];
+        $plans->serv2 = $services[1];
+        $plans->serv3 = $services[2];
+        $plans->serv4 = $services[3];
+        $plans->serv5 = $services[4];
+        $plans->serv6 = $services[5];
+        $plans->serv7 = $services[6];
+        $plans->serv8 = $services[7];
+        $plans->save();
+
+        return redirect(route('gotoplans'));
+    }
+    public function updatepro(Request $request){
+        $request->validate([
+            "title"=>'required|string',
+            "show_price"=>'required|numeric',
+            "price"=>'required|numeric',
+            'service'=>'array'
+        ]);
+        $services  = $request['service'];
+        $plans = $this->getPlan(2);
+        $plans->name = $request['title'];
+        $plans->show_price = $request['show_price'];
+        $plans->price = $request['price'];
+        $plans->type = 2;
+        $plans->serv1 = $services[0];
+        $plans->serv2 = $services[1];
+        $plans->serv3 = $services[2];
+        $plans->serv4 = $services[3];
+        $plans->serv5 = $services[4];
+        $plans->serv6 = $services[5];
+        $plans->serv7 = $services[6];
+        $plans->serv8 = $services[7];
+        $plans->save();
+
+        return redirect(route('gotoplans'));
+    }
+    public function updatebusiness(Request $request){
+        $request->validate([
+            "title"=>'required|string',
+            "show_price"=>'required|numeric',
+            "price"=>'required|numeric',
+            'service'=>'array'
+        ]);
+        $services  = $request['service'];
+        $plans = $this->getPlan(3);
+        $plans->name = $request['title'];
+        $plans->show_price = $request['show_price'];
+        $plans->price = $request['price'];
+        $plans->type = 3;
+        $plans->serv1 = $services[0];
+        $plans->serv2 = $services[1];
+        $plans->serv3 = $services[2];
+        $plans->serv4 = $services[3];
+        $plans->serv5 = $services[4];
+        $plans->serv6 = $services[5];
+        $plans->serv7 = $services[6];
+        $plans->serv8 = $services[7];
+        $plans->save();
+
+        return redirect(route('gotoplans'));
+    }
+    public function gotoplans(){
+        $plans = Plans::first();
+        $proPlans = Plans::where('type','=',2)->first();
+        $busPlans = Plans::where('type','=',3)->first();
+        return view('plans')->with(compact('plans','proPlans','busPlans'));
     }
 }
